@@ -1,0 +1,30 @@
+<?
+class Configuration extends ADMIN_Controller
+{
+	
+	public function details($id = "")
+	{
+		if($this->bitauth->is_admin())
+		{
+			$config_id = $id ? $id : 1;	
+		}
+		else
+		{
+			$config_id = $this->session->userdata('config_id') ? $this->session->userdata('config_id') : 1;
+		}
+		
+		if(!$this->main_model->get($config_id))
+		{
+			$this->main_model->set_id($config_id);
+			$this->main_model->create();
+		}
+		
+		return parent::details($config_id);
+	}
+
+	public function show_config()
+	{
+		$this->load->view('admin/home/inc.config.php');
+	}
+}
+?>
