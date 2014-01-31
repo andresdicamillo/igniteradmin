@@ -2,6 +2,7 @@
 class Front_init extends CI_Controller
 {
 	protected $facebook_site = false;
+	protected $working = true;
 	
 	public function __construct()
 	{
